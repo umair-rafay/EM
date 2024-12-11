@@ -1,0 +1,21 @@
+apiVersion: integrations.k8smgmt.io/v3
+kind: Repository
+metadata:
+  name: envmgr
+  project: dev-project
+spec:
+  agents:
+  - name: dev-agent
+  endpoint: https://github.com/umair-rafay/EM.git
+  options: {}
+  type: Git
+status:
+  agents:
+  - id: 7krr19k
+    name: dev-agent
+  projects:
+  - projectId: 2d98ddk
+    repositoryId: ko0766k
+  webhookConfig:
+    webhookSecret: 3c4e6d4192ca515e003da4d51146f9051a280b1a98cb85f92f540a6b9a4ee7a1
+    webhookURL: https://console.rafay.dev/v2/config/webhook/repository/ko0766k
