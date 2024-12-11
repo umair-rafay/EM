@@ -6,8 +6,13 @@ metadata:
 spec:
   agents:
   - name: dev-agent
+  credentials:
+    password: sealed://credentials.password
+    username: umair-rafay
   endpoint: https://github.com/umair-rafay/EM.git
   options: {}
+  secret:
+    name: file://artifacts/envmgr/sealed-secret.yaml
   type: Git
 status:
   agents:
