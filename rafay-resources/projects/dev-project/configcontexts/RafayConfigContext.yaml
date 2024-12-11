@@ -1,0 +1,43 @@
+apiVersion: eaas.envmgmt.io/v1
+kind: ConfigContext
+metadata:
+  name: rafay-config-context
+  project: dev-project
+spec:
+  envs:
+    # Here we are defining the RCTL config in config context, to be used in multiple environment templates
+    - key: RCTL_API_KEY
+      options:
+        sensitive: true
+      value: sealed://RCTL_API_KEY
+      valueType: text
+    - key: RCTL_REST_ENDPOINT
+      value: console.rafay.dev
+      valueType: text
+    - key: RCTL_PROJECT
+      value: dev-project
+      valueType: text
+  variables:
+    # Here we are defining the AWS credentials in config context, to be used in multiple environment templates
+    - name: aws_access_key_id
+      valueType: text
+      options:
+        sensitive: true
+        override:
+          type: allowed
+      value: sealed://aws_access_key_id
+    - name: aws_secret_access_key
+      valueType: text
+      options:
+        sensitive: true
+        override:
+          type: allowed
+      value: sealed://aws_secret_access_key
+    - name: aws_region
+      valueType: text
+      value: us-west-2
+      options:
+        override:
+          type: allowed
+  secret:
+    name: file://artifacts/rafay-config-context/sealsecret.yaml
