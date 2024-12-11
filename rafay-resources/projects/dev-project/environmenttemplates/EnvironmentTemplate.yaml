@@ -1,0 +1,21 @@
+apiVersion: eaas.envmgmt.io/v1
+kind: EnvironmentTemplate
+metadata:
+  name: app-environment-template
+  project: dev-project
+spec:
+  # Here we are associating an agent which will be used for running code of all involved resource templates, in this case being VPCResourcetemplate
+  agents:
+    - name: dev-agent
+  contexts:
+    # Here we are associating a configcontext that contains information related to AWS credentials. Reason a configcontext is used here , so that the same can be associated to multiple other env templates
+    - name: rafay-config-context
+  resources:
+    # Here we are associating first resource template VPCResourceTemplate and its version.
+    - kind: resourcetemplate
+      name: vpc-resource-template
+      resourceOptions:
+        version: v1
+      type: dynamic
+  version: v1
+  versionState: active
