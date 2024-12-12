@@ -1,0 +1,22 @@
+apiVersion: eaas.envmgmt.io/v1
+kind: Driver
+metadata:
+  name: appresize
+  project: dev-project
+spec:
+  config:
+    type: container
+    timeoutSeconds: 600
+    container:
+      image: "registry.dev.rafay-edge.net/rafay/resize:0.2"
+      # Run the resize logic with dry run mode to recommend sizing adjsutments in output and for all namespaces on the cluster
+      arguments:
+        - "- /opt/resize.py"
+        - "- --dry-run"
+        - "- --all-namespaces"
+      commands:
+        - python3
+      workingDirPath: /tmp
+      cpuLimitMilli: "500"
+      memoryLimitMb: "1024"
+status: {}
