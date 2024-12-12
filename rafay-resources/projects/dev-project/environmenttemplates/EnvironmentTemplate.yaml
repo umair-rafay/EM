@@ -44,14 +44,24 @@ spec:
         required: true
         override:
           type: allowed
-  # Here we are associating the driver for JiraAprpoval onInit hook
-  hook:
-    onInit:
-      - name: approval
-        type: driver
-        options: {}
-        onFailure: unspecified
-        driver:
-          name: jira-approval
-  version: v2
+  # Here we are setting the schedule to run appresize nightly
+  schedules:
+    - name: "daily-schedule "
+      type: workflows
+      cadence:
+        cronExpression: 59 23 * * *
+        cronTimezone: America/Los_Angeles
+      workflows:
+        tasks:
+          - name: AppResizeRun
+            type: driver
+            options: {}
+            agents:
+              - name: dev-agent
+            onFailure: unspecified
+            driver:
+              name: appresize
+      optOutOptions:
+        allowOptOut: false
+  version: v3
   versionState: active
