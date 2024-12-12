@@ -33,7 +33,7 @@ variable "project" {
 
 variable "eks_cluster_version" {
   description = "eks cluster version"
-  default     = "1.26"
+  default     = "1.30"
 }
 
 variable "eks_cluster_node_instance_type" {
